@@ -12,7 +12,7 @@ go run main.go
 
 Sample output:
 ```shell
-Running: gcInt v0.1
+Running: gcint v0.1
 ======================================
 versions=[1 5 10 14]
 readers=[7 11]
