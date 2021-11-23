@@ -33,7 +33,7 @@ preserve=[5 10 14]
 
 ### Test
 
-Run all unit tests (i.e., [main_test.go](./main_test.go)
+Run all unit tests (i.e., [main_test.go](./main_test.go))
 
 ```
 go test -v
