@@ -25,7 +25,7 @@ import (
 // Struct used to hold tagged (release) build information
 // Which is displayed by the `version` command.
 var (
-	UtilName = "gcInt"
+	UtilName = "gcint"
 	Version  = "0.1"
 )
 
@@ -88,9 +88,7 @@ func Gc2(versions []int, readers []int) ([]int, error) {
 			}
 		}
 
-		// append last known version (as last step) to preserve sort order
-		// TODO: test if last "preserve" entry value is < latest "version"; if so, preserve it as well
-		// TODO: today we just add it blindly (need to avoid duplication)
+		// append last known version (as last step) to preserve sort order if needed
 		vlast := len(versions) - 1
 		plast := len(preserve) - 1
 
