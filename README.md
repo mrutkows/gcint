@@ -4,6 +4,8 @@ Simple gc using integer vectors to simulate
 
 Iterate primarily over what should be the shorter vector (readers) removing unused references in from versions vector
 
+**Note** There are still optimizations to reduce the inner loop against a Slice of the `versions` vector since we do NOT need to start at the beginning EACH time since reader entries are sorted...
+
 ### Run 
 
 ```shell
