@@ -19,19 +19,22 @@ Sample output:
 Running: gcint v0.1
 ======================================
 versions=[1 5 10 14]
-readers=[7 11]
+readers=[7 11 12]
 EVAL: reader[0]=7
 EVAL: version[0]=1
 EVAL: version[1]=5
 EVAL: version[2]=10
   >> APPEND: version=[5]; reader=[7]
+NEW: versions=[10 14]
 EVAL: reader[1]=11
-EVAL: version[0]=1
-EVAL: version[1]=5
-EVAL: version[2]=10
-EVAL: version[3]=14
+EVAL: version[0]=10
+EVAL: version[1]=14
   >> APPEND: version=[10]; reader=[11]
+NEW: versions=[14]
+EVAL: reader[2]=12
+EVAL: version[0]=14
 preserve=[5 10 14]
+expected=[5 10 14]; result=[5 10 14]
 ```
 
 
@@ -45,9 +48,43 @@ go test -v
 
 Sample output:
 ```shell
+=== RUN   TestSimple
+versions=[1 5 10 14]
+readers=[7 11]
+EVAL: reader[0]=7
+EVAL: version[0]=1
+EVAL: version[1]=5
+EVAL: version[2]=10
+  >> APPEND: version=[5]; reader=[7]
+NEW: versions=[10 14]
+EVAL: reader[1]=11
+EVAL: version[0]=10
+EVAL: version[1]=14
+  >> APPEND: version=[10]; reader=[11]
+NEW: versions=[14]
+preserve=[5 10 14]
 expected=[5 10 14]; result=[5 10 14]
 --- PASS: TestSimple (0.00s)
-PASS
-ok  	github.com/mrutkows/gc	0.597s
 
+=== RUN   TestSimple2
+versions=[1 5 10 14]
+readers=[7 11 12]
+EVAL: reader[0]=7
+EVAL: version[0]=1
+EVAL: version[1]=5
+EVAL: version[2]=10
+  >> APPEND: version=[5]; reader=[7]
+NEW: versions=[10 14]
+EVAL: reader[1]=11
+EVAL: version[0]=10
+EVAL: version[1]=14
+  >> APPEND: version=[10]; reader=[11]
+NEW: versions=[14]
+EVAL: reader[2]=12
+EVAL: version[0]=14
+preserve=[5 10 14]
+expected=[5 10 14]; result=[5 10 14]
+--- PASS: TestSimple2 (0.00s)
+PASS
+ok  	github.com/mrutkows/gc	0.147s
 ```
