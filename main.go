@@ -26,7 +26,7 @@ import (
 // Which is displayed by the `version` command.
 var (
 	UtilName = "gcint"
-	Version  = "0.1"
+	Version  = "0.2"
 )
 
 func main() {
