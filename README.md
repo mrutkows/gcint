@@ -4,9 +4,9 @@ Simple gc using integer vectors to simulate
 
 Iterate primarily over what should be the shorter vector (readers) removing unused references in from versions vector
 
-### TODO
+### Changelog
 
-**Note** There are still optimizations to reduce the inner loop against a Slice of the `versions` vector since we do NOT need to start at the beginning EACH time since reader entries are sorted...
+- v0.2: left-truncated `versions` slice on match to `readers` value to shorten range of next iteration 
 
 ### Run 
 
@@ -16,7 +16,7 @@ go run main.go
 
 Sample output:
 ```shell
-Running: gcint v0.1
+Running: gcint v0.2
 ======================================
 versions=[1 5 10 14]
 readers=[7 11 12]
