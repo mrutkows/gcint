@@ -32,9 +32,11 @@ var (
 func main() {
 	fmt.Printf("Running: %s v%s\n", UtilName, Version)
 	fmt.Println("======================================")
-	// simulate input data
+
+	// Note: The following test is run using  "go run"
+	// You should use `go test` to run this same testcase as well as others
 	versions := []int{1, 5, 10, 14}
-	readers := []int{7, 11}
+	readers := []int{7, 11, 12}
 	expected := []int{5, 10, 14}
 
 	result, _ := Gc2(versions, readers)
@@ -42,7 +44,11 @@ func main() {
 	fmt.Printf("expected=%v; result=%v\n", expected, result)
 }
 
-// assumptions: versions and readers are already sorted (by virtual timestamp)
+// assumptions:
+// - versions and readers are already sorted (by virtual timestamp)
+// - no duplicate integers in either vector (this clearly is possible if we want to alter that assumption)
+//
+// Notes:
 // As we encounter each reader value, we MUST preserve the version value at OR just below it
 // So instead of throwing out values, we can instead preserve the value just before each reader value
 // Ideally we use pointers, which Go slices provide as an intrinsic default
@@ -79,10 +85,18 @@ func Gc2(versions []int, readers []int) ([]int, error) {
 				if r == v {
 					fmt.Printf("  >> APPEND: version=[%d]; reader=[%d]\n", v, r)
 					preserve = append(preserve, v)
+
+					// shorten versions to start at new index
+					versions = versions[j:]
+					fmt.Printf("NEW: versions=%v\n", versions)
 					break
-				} else if v > r {
+				} else if (v > r) && (len(versions) > 1) {
 					fmt.Printf("  >> APPEND: version=[%d]; reader=[%d]\n", versions[j-1], r)
 					preserve = append(preserve, versions[j-1])
+
+					// shorten versions to start at new index
+					versions = versions[j:]
+					fmt.Printf("NEW: versions=%v\n", versions)
 					break
 				}
 			}
