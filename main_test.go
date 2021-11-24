@@ -40,9 +40,7 @@ func TestSimple(t *testing.T) {
 		fmt.Printf("expected=%v; result=%v\n", expected, result)
 	}
 
-	assert.True(t, true, "True is true!")
 	assert.EqualValues(t, expected, result, "expected!=result")
-
 }
 
 // Test 2 readers referencing same version
@@ -63,7 +61,5 @@ func TestSimple2(t *testing.T) {
 		fmt.Printf("expected=%v; result=%v\n", expected, result)
 	}
 
-	assert.True(t, true, "True is true!")
 	assert.EqualValues(t, expected, result, "expected!=result")
-
 }
